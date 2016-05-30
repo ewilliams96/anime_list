@@ -17,24 +17,26 @@ def run_animelist():
 	run_program = True
 	while(run_program):
 		print('''1. View list
-			2. Total time spent
-			3. Append to list
-			4. Save Session
-			5. Quit''')
+2. Total time spent
+3. Append to list
+4. Save Session
+5. Quit''')
+
 		choice = input('>')
-			if choice == '1':
-				view_list()
-			elif choice == '2':
-				total_time()
-			elif choice == '3':
-				add_anime()
-			elif choice == '4':
-				write_to_file()
-			elif choice == '5':
-				print("Goodbye!")
-				run_program = False
-			else:
-				print("Invalid input. Try again.")
+
+		if choice == '1':
+			view_list()
+		elif choice == '2':
+			total_time()
+		elif choice == '3':
+			add_anime()
+		elif choice == '4':
+			write_to_file()
+		elif choice == '5':
+			print("Goodbye!")
+			run_program = False
+		else:
+			print("Invalid input. Try again.")
 
 
 	
@@ -64,7 +66,16 @@ def read_from_file(fname):
 		anime_list.append(anime)
 	return anime_list
 
+def view_list():
+	print("view list")
 
+def total_time():
+	print("total time")
+
+def add_anime():
+	print("add anime")
+def write_to_file():
+	print("save")
 run_animelist()
 
 
