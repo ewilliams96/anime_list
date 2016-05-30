@@ -32,7 +32,7 @@ def main():
 		elif choice == '3':
 			add_anime(anime_list)
 		elif choice == '4':
-			write_to_file()
+			write_to_file(anime_list, "animelist.txt")
 		elif choice == '5':
 			print("Goodbye!")
 			run_program = False
@@ -50,9 +50,8 @@ def read_from_file(fname):
 
 	line_list = file.read().splitlines()
 
-	file = open("animelist.txt", 'r')
+	
 
-	text = file.readlines()
 	anime_list = []
 
 	for line in line_list:
@@ -97,6 +96,8 @@ def total_time(anime_list):
 
 	print("This is equivalent to " + str(hours) + " hours, or " + str(days) + " days.")
 
+# allows user to input another entry to add to list
+# takes anime_list
 def add_anime(anime_list):
 	name = input("Enter title for new entry. >")
 	eps = input("Enter number of episodes for new entry. >")
@@ -105,9 +106,23 @@ def add_anime(anime_list):
 
 	anime_list.append(new_anime)
 
+# writes current list contents to file to save
+# takes anime_list, filename
+def write_to_file(anime_list, fname):
+	# truncate file
+	file = open(fname, 'w')
+	file.close()
 
-def write_to_file():
-	print("save")
+	file = open(fname, 'a')
+	for anime in anime_list:
+		line_to_write = anime.to_string()
+		line_to_write = line_to_write + '\n'
+		file.write(line_to_write)
+
+	file.close()
+
+	print("File saved.")
+
 
 main()
 
