@@ -10,10 +10,11 @@ class Anime:
 
 	def to_string(self):
 		str = self.name + ', ' + self.episodes
+		return str
 
 
 def run_animelist():
-	read_from_file("animelist.txt")
+	anime_list = read_from_file("animelist.txt")
 	run_program = True
 	while(run_program):
 		print('''1. View list
@@ -25,7 +26,7 @@ def run_animelist():
 		choice = input('>')
 
 		if choice == '1':
-			view_list()
+			view_list(anime_list)
 		elif choice == '2':
 			total_time()
 		elif choice == '3':
@@ -49,8 +50,11 @@ def read_from_file(fname):
 	filename = fname
 	file = open(fname, 'r')
 
-	line_list = file.readlines()
+	line_list = file.read().splitlines()
 
+	file = open("animelist.txt", 'r')
+
+	text = file.readlines()
 	anime_list = []
 
 	for line in line_list:
@@ -66,8 +70,13 @@ def read_from_file(fname):
 		anime_list.append(anime)
 	return anime_list
 
-def view_list():
+
+def view_list(anime_list):
 	print("view list")
+	for anime in anime_list:
+		print(anime.to_string())
+
+
 
 def total_time():
 	print("total time")
