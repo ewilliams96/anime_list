@@ -1,0 +1,2 @@
+Naruto, 50
+Hello World, 10
