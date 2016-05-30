@@ -9,11 +9,11 @@ class Anime:
 		
 
 	def to_string(self):
-		str = self.name + ', ' + self.episodes
-		return str
+		string = self.name + ', ' + str(self.episodes)
+		return string
 
 
-def run_animelist():
+def main():
 	anime_list = read_from_file("animelist.txt")
 	run_program = True
 	while(run_program):
@@ -30,7 +30,7 @@ def run_animelist():
 		elif choice == '2':
 			total_time(anime_list)
 		elif choice == '3':
-			add_anime()
+			add_anime(anime_list)
 		elif choice == '4':
 			write_to_file()
 		elif choice == '5':
@@ -89,16 +89,26 @@ def total_time(anime_list):
 
 	# minutes to hours
 	hours = time / 60
+	hours = round(hours, 1)
 
 	# minutes to days
 	days = hours / 24
+	days = round(days, 1)
 
 	print("This is equivalent to " + str(hours) + " hours, or " + str(days) + " days.")
 
-def add_anime():
-	print("add anime")
+def add_anime(anime_list):
+	name = input("Enter title for new entry. >")
+	eps = input("Enter number of episodes for new entry. >")
+
+	new_anime = Anime(name, eps)
+
+	anime_list.append(new_anime)
+
+
 def write_to_file():
 	print("save")
-run_animelist()
+
+main()
 
 
