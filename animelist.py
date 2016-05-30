@@ -4,8 +4,8 @@ class Anime:
 	
 	def __init__(self, name, episodes, length=22):
 		self.name = name
-		self.episodes = episodes
-		self.length = length
+		self.episodes = int(episodes)
+		self.length = int(length)
 		
 
 	def to_string(self):
@@ -28,7 +28,7 @@ def run_animelist():
 		if choice == '1':
 			view_list(anime_list)
 		elif choice == '2':
-			total_time()
+			total_time(anime_list)
 		elif choice == '3':
 			add_anime()
 		elif choice == '4':
@@ -41,9 +41,7 @@ def run_animelist():
 
 
 	
-
-
-# read saved data from text file	
+# read saved data from text file and convert to Anime objects
 # takes name of file 
 # returns list of Anime objects 
 def read_from_file(fname):
@@ -68,18 +66,34 @@ def read_from_file(fname):
 
 		anime = Anime(anime_name, anime_episodes)
 		anime_list.append(anime)
+
 	return anime_list
 
 
+# prints contents of anime list to console
+# takes anime_list as argument
 def view_list(anime_list):
 	print("view list")
 	for anime in anime_list:
 		print(anime.to_string())
 
 
+# prints total time of life spent watching anime to console
+# takes anime_list as argument
+def total_time(anime_list):
+	time = 0
+	for anime in anime_list:
+		t = anime.episodes * anime.length
+		time = time + t
+	print("You have spent " + str(time) + " minutes watching anime.")
 
-def total_time():
-	print("total time")
+	# minutes to hours
+	hours = time / 60
+
+	# minutes to days
+	days = hours / 24
+
+	print("This is equivalent to " + str(hours) + " hours, or " + str(days) + " days.")
 
 def add_anime():
 	print("add anime")
